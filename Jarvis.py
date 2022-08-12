@@ -107,6 +107,7 @@ def send_email():
     """
     It takes the email address of the person you want to send the email to, and then it sends an email
     to that person
+    TODO : here you need to create a mycridential pickel by providing your email and app password
 
     :param to: The email address of the recipient
     :type to: str

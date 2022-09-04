@@ -12,7 +12,6 @@ import mailer
 activate = True
 
 
-
 # This is the code for the voice of the assistant.
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
@@ -29,6 +28,7 @@ def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
+
 def switch():
     """
     If the variable activate is true, then call the function operate. Otherwise, call the function speak
@@ -38,6 +38,7 @@ def switch():
         operate()
     else:
         speak("good day to you sir... i am exiting")
+
 
 def option():
     """
@@ -51,7 +52,7 @@ def option():
     else:
         activate = True
     switch()
-    
+
 
 def take_command(txt=None):
     """
@@ -61,7 +62,7 @@ def take_command(txt=None):
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("i am listening......")
-        if(txt != None):
+        if (txt != None):
             speak(txt)
         r.pause_threshold = 1
         audio = r.listen(source, phrase_time_limit=4)
@@ -123,6 +124,7 @@ def send_email():
         print(e)
         speak("something went wrong")
 
+
 def operate():
     txt = take_command().lower()
 
@@ -140,7 +142,6 @@ def operate():
         txt = txt.replace("wikipedia", "")
         result = wiki.summary(txt, sentences=2)
         speak(result.split("\n")[0])
-
 
     # Searching for the first result of the search query and opening it in the browser.
     elif "play" in txt:
@@ -173,7 +174,7 @@ def operate():
         if int(s[0]) > 12:
             final_str = f"its {hour} : {min} pm"
         else:
-                final_str = f"its {hour} : {min} am"
+            final_str = f"its {hour} : {min} am"
         speak(final_str)
 
     else:
@@ -181,11 +182,11 @@ def operate():
         speak("here what i found in google")
         for i in googlesearch.search(txt, stop=1):
             webbrowser.open(i)
-    
+
     option()
 
 # Calling the functions wish_me() and operate()
 
+
 wish_me()
 operate()
-
